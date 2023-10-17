@@ -1,8 +1,9 @@
 import { useState } from "react";
-export default function LoginForm() {
+export default function SignUpForm() {
   const DEFAULT_VALUES = {
     username: "",
     password: "",
+    passwordConfirm: "",
   };
 
   const [form, setForm] = useState(DEFAULT_VALUES);
@@ -18,13 +19,14 @@ export default function LoginForm() {
     e.preventDefault();
     setForm(DEFAULT_VALUES);
 
-    // should ask backend to verify credentials are correct and sign in
-    // if incorrect, signal "incorrect username or password"
+    // should ask backend to verify username/email doesn't already exist
+    // then create the user account in the database
+    // and sign user in
   };
 
   return (
     <div>
-      log in
+      sign up
       <form onSubmit={handleSubmit}>
         <label>
           <p>username</p>
@@ -46,9 +48,19 @@ export default function LoginForm() {
             onChange={handleChange}
           />
         </label>
+        <label>
+          <p>confirm password</p>
+          <input
+            type="password"
+            placeholder="your password again"
+            value={form.passwordConfirm || ""}
+            name="passwordConfirm"
+            onChange={handleChange}
+          />
+        </label>
         <button type="submit">submit</button>
       </form>
-      <p>don't have an account? sign up here!</p>
+      <p>already have an account? sign in here!</p>
     </div>
   );
 }
