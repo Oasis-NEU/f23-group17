@@ -60,6 +60,7 @@ export default function SignUpForm() {
         </label>
         <button type="submit">submit</button>
       </form>
+      {/* Need to add link to Login */}
       <p>already have an account? sign in here!</p>
     </div>
   );
