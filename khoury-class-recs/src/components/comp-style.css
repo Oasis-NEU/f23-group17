@@ -1,0 +1,15 @@
+.course-desc-wrapper {
+  display: flex;
+  flex-direction: column;
+  border-width: 2px;
+  border-style: solid;
+  align-items: start;
+  padding-top: 1%;
+  padding-bottom: 1%;
+  padding-left: 5%;
+  padding-right: 5%;
+}
+
+.course-desc-button {
+  align-self: end;
+}
