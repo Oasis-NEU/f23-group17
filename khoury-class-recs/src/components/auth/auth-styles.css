@@ -1,0 +1,19 @@
+.auth-container {
+  border: solid black;
+  border-radius: 10px;
+  width: 400px;
+  height: 400px;
+}
+
+.auth-form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.auth-label {
+  text-align: left;
+}
+
+.submit-button {
+}
