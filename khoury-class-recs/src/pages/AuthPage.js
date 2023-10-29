@@ -1,8 +1,12 @@
 import { React } from "react";
+import "./pages-styles.css";
 
+/**
+ * component is either LoginForm or SignUpForm
+ */
 export default function AuthPage({ component }) {
   return (
-    <div style={{ padding: "75px", display: "flex", justifyContent: "center" }}>
+    <div className="page-content" id="auth">
       {component}
     </div>
   );

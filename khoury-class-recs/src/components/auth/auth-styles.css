@@ -1,8 +1,13 @@
+input {
+  border-radius: 4px;
+}
 .auth-container {
-  border: solid black;
+  border: solid #2b2d42;
   border-radius: 10px;
+  box-shadow: 10px 10px #8d99ae;
   width: 400px;
   height: 400px;
+  background-color: #edf2f4;
 }
 
 .auth-form {
@@ -16,4 +21,5 @@
 }
 
 .submit-button {
+  
 }

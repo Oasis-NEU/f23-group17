@@ -6,14 +6,13 @@ import "./layout-styles.css";
 export default function Header() {
   return (
     <header id="header">
-      <div
+      <nav
         style={{
           display: "flex",
           justifyContent: "space-between",
           alignItems: "center",
         }}
       >
-        {" "}
         <Link to="/" className="header-nav-link">
           <DvrSharpIcon sx={{ fontSize: "50px" }} />
         </Link>
@@ -26,9 +25,9 @@ export default function Header() {
           </Link>
           <Link to="/my-profile" className="header-nav-link">
             profile
-          </Link>{" "}
+          </Link>
         </div>
-      </div>
+      </nav>
     </header>
   );
 }
