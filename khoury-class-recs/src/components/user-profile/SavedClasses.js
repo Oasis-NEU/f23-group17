@@ -1,3 +1,4 @@
+import React from "react";
 import CourseDescPreview from "../CourseDescPreview";
 
 export default function SavedClasses({ list }) {
