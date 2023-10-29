@@ -1,6 +1,7 @@
 import { React } from "react";
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
+import AuthenticationServices from "./auth-services";
 import "./auth-styles.css";
 
 export default function LoginForm() {
@@ -26,9 +27,12 @@ export default function LoginForm() {
 
     // should ask backend to verify credentials are correct and sign in
     // if incorrect, signal "incorrect username or password"
+    try {
+      AuthenticationServices.loginUser(form.username, form.password);
+      navigate("/");
+    } catch {}
 
     // on submit success, nagivate to home
-    navigate("/");
   };
 
   return (

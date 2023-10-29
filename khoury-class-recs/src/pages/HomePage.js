@@ -1,9 +1,15 @@
 import { React } from "react";
 import { Link } from "react-router-dom";
 import Layout from "../layout/Layout";
+import { supabase } from "../supabase";
 import "./pages-styles.css";
 
 export default function HomePage() {
+  async function getSession() {
+    const { data, error } = await supabase.auth.getSession();
+    console.log(data);
+  }
+
   return (
     <Layout>
       <div className="page-content">

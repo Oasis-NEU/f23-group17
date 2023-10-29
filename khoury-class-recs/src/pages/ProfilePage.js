@@ -7,6 +7,7 @@ import YourReviews from "../components/user-profile/YourReviews";
 import "./pages-styles.css";
 
 export default function ProfilePage() {
+  
   const props = {};
   return (
     <Layout>
