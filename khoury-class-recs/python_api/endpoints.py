@@ -9,9 +9,9 @@ app = Flask(__name__)
 
 def giverecs():
 
-    most_common_keywords = find_most_common()
+    most_common_keywords = []  # replace empty list with the function that gets the lsit of dictionaries for the classes the student enteres
 
-    class_dictionary_lst = []
+    class_dictionary_lst = [] # replace empty list with the function that gets the list of dictionaries for the classes in the course catalog
 
 
     return match_most_common(most_common_keywords, class_dictionary_lst)
