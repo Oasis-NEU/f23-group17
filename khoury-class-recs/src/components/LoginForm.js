@@ -1,12 +1,24 @@
+
+// Login Page
+
 import { useState } from "react";
+import { supabase } from "../supabase/supabaseClient";
+
+// Page
 export default function LoginForm() {
+
+  // Holds user input
   const DEFAULT_VALUES = {
     username: "",
     password: "",
   };
 
   const [form, setForm] = useState(DEFAULT_VALUES);
+  const [msg, setMsg] = useState("")
+  const [errorMsg, setErrorMsg] = useState("");
+  const [loading, setLoading] = useState(false)
 
+  // Handles state changes
   const handleChange = (e) => {
     setForm({
       ...form,
@@ -14,12 +26,38 @@ export default function LoginForm() {
     });
   };
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    setForm(DEFAULT_VALUES);
+  // Login functionality
+  const login = async (email, password) =>
+    supabase.auth.signInWithPassword({ email, password })
 
-    // should ask backend to verify credentials are correct and sign in
-    // if incorrect, signal "incorrect username or password"
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+
+    try
+    {
+      setErrorMsg("")
+      setLoading(true)
+
+      const {
+        data: { user, session },
+        error
+      } = await login(form.username.value, form.password.value);
+
+      if (error) setErrorMsg(error.message)
+      if (user && session) NavigationPreloadManager("/")
+
+    }
+    catch(err)
+    {
+      setErrorMsg("Email or password incorrect")
+    }
+
+    setLoading(true)
+    
+
+
+    // setForm(DEFAULT_VALUES);
+
   };
 
   return (
