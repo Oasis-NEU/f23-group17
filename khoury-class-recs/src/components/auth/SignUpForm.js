@@ -66,7 +66,9 @@ export default function SignUpForm() {
             onChange={handleChange}
           />
         </label>
-        <button type="submit">submit</button>
+        <button type="submit" className="submit-button">
+          submit
+        </button>
       </form>
       <p>
         already have an account? <Link to="/login">sign in here!</Link>

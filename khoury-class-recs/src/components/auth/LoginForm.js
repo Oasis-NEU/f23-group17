@@ -55,7 +55,9 @@ export default function LoginForm() {
             onChange={handleChange}
           />
         </label>
-        <button type="submit">submit</button>
+        <button type="submit" className="submit-button">
+          submit
+        </button>
       </form>
       <p>
         don't have an account? <Link to="/sign-up">sign up here!</Link>
