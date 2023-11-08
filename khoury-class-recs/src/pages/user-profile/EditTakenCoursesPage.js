@@ -6,11 +6,9 @@ import "../pages-styles.css";
 export default function EditTakenCoursesPage() {
   return (
     <Layout>
-      <div className="page-content">
-        <div className="user-prof-edit-header">
-          <ProfileBackButton />
-          <h1>edit my taken courses</h1>
-        </div>
+      <div className="page-content edit-page">
+        <ProfileBackButton />
+        <h1>edit my taken courses</h1>
         <Autocomplete
           disablePortal
           options={[]}
@@ -18,7 +16,7 @@ export default function EditTakenCoursesPage() {
           renderInput={(params) => (
             <TextField
               {...params}
-              label="enter a course name"
+              label="add a course"
               placeholder="ex: CS3500"
             />
           )}
