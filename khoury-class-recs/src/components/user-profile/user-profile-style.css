@@ -7,6 +7,7 @@
 }
 .user-profile-comp {
   min-width: 40vw;
+  max-width: 40vw;
   min-height: 40vh;
   margin: 0px 20px 0px 20px;
 }
@@ -25,4 +26,5 @@
   text-decoration: none;
   border: solid #ef233c;
   border-radius: 5px;
+  margin: 20px;
 }

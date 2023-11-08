@@ -1,4 +1,5 @@
 import React from "react";
+import { Rating } from "@mui/material";
 import "./comp-style.css";
 
 /**
@@ -12,24 +13,21 @@ import "./comp-style.css";
 export default function CourseDescPreview(props) {
   return (
     <div className="course-desc-wrapper">
-      <p>{props.ident + " - " + props.name}</p>
-      <p>{props.desc}</p>
-      <p>
-        <b>rating: </b>
-        {props.rating}
-      </p>
+      <h3 style={{ marginBottom: -15 }}>{props.ident + " - " + props.name}</h3>
+      <p style={{ marginBottom: -5 }}>{props.desc}</p>
       {props.preReqs && (
-        <p>
-          <b>prerequisites: </b>
-          {props.preReqs}
+        <p style={{ marginBottom: -5, fontSize: 14 }}>
+          prerequisite(s): {props.preReqs}
         </p>
       )}
       {props.coReqs && (
-        <p>
-          <b>corequisites: </b>
-          {props.coReqs}
-        </p>
+        <p style={{ fontSize: 14 }}>corequisite(s): {props.coReqs}</p>
       )}
+
+      <p style={{ display: "flex", alignItems: "center" }}>
+        <b>overall rating: </b>
+        <Rating precision={0.5} value={props.rating} readOnly size="large" />
+      </p>
 
       {/** Needs link*/}
       <button className="course-desc-button">see more details</button>
