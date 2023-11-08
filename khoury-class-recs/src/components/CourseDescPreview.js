@@ -12,7 +12,7 @@ import "./comp-style.css";
 export default function CourseDescPreview(props) {
   return (
     <div className="course-desc-wrapper">
-      <h3>{props.name}</h3>
+      <p>{props.ident + " - " + props.name}</p>
       <p>{props.desc}</p>
       <p>
         <b>rating: </b>

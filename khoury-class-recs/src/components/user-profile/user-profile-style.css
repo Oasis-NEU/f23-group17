@@ -2,6 +2,8 @@
 #user-profile-reviews {
   border: solid #8d99ae;
   border-radius: 10px;
+  display: flex;
+  flex-direction: column;
 }
 .user-profile-comp {
   min-width: 40vw;
@@ -11,6 +13,16 @@
 
 #user-profile-reviews {
   margin: 40px 0px 40px 0px;
-  min-width: calc(80vw + 40px + 3px);
+  min-width: calc(80vw + 40px + 6px);
   min-height: 30vh;
+}
+
+.user-profile-edit-button {
+  align-self: center;
+  display: flex;
+  color: #ef233c;
+  padding: 10px;
+  text-decoration: none;
+  border: solid #ef233c;
+  border-radius: 5px;
 }

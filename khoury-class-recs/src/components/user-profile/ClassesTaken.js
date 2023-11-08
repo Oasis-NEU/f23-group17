@@ -1,22 +1,18 @@
 import React from "react";
-import { useNavigate } from "react-router-dom";
 import CourseDescPreview from "../CourseDescPreview";
 import "./user-profile-style.css";
+import EditButton from "./EditButton";
 
 export default function ClassesTaken({ list }) {
-  const navigate = useNavigate();
-
-  function handleClick() {
-    navigate("/my-profile/edit-taken-courses");
-  }
-
+  list = [{ ident: "CS2500", name: "Fundies", desc: "FUNDIESSSS" }];
   return (
     <div className="user-profile-comp">
-      <h3>classes you've taken</h3>
+      <h2>classes you've taken</h2>
       {list ? (
         <div>
           {list.map((course) => (
             <CourseDescPreview
+              ident={course.ident}
               name={course.name}
               desc={course.desc}
               rating={course.rating}
@@ -28,10 +24,16 @@ export default function ClassesTaken({ list }) {
       ) : (
         <div>
           <p> you haven't taken any classes {" :( "} </p>
-          <p>add classes here</p>
         </div>
       )}
-      <button onClick={handleClick}>edit</button>
+      {list ? (
+        <EditButton label="edit" path="/my-profile/edit-taken-courses" />
+      ) : (
+        <EditButton
+          label="add classes here"
+          path="/my-profile/edit-taken-courses"
+        />
+      )}
     </div>
   );
 }

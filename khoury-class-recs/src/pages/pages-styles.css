@@ -86,3 +86,12 @@ h1 {
   background-color: #ef233c;
   padding: 30vh 150px 30vh 150px;
 }
+
+.user-prof-edit-header {
+  display: flex;
+}
+
+.user-prof-edit-header h1 {
+  align-self: center;
+  justify-self: center;
+}

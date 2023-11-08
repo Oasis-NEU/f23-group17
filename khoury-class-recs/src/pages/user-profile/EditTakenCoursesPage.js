@@ -1,17 +1,15 @@
 import Layout from "../../layout/Layout";
 import { TextField, Autocomplete } from "@mui/material";
-import ProfileBackButton from "./ProfileBackButton";
+import ProfileBackButton from "../../components/user-profile/ProfileBackButton";
 import "../pages-styles.css";
 
 export default function EditTakenCoursesPage() {
   return (
     <Layout>
       <div className="page-content">
-        <div style={{ display: "flex" }}>
+        <div className="user-prof-edit-header">
           <ProfileBackButton />
-          <h1 style={{ alignSelf: "center", justifySelf: "center" }}>
-            edit my taken courses
-          </h1>
+          <h1>edit my taken courses</h1>
         </div>
         <Autocomplete
           disablePortal
@@ -25,7 +23,6 @@ export default function EditTakenCoursesPage() {
             />
           )}
         />
-        
       </div>
     </Layout>
   );
