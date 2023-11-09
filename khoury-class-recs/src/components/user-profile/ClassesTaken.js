@@ -1,5 +1,5 @@
 import React from "react";
-import CourseDescPreview from "../CourseDescPreview";
+import CondensedCourseDescPreview from "../CondensedCourseDescPreview";
 import "./user-profile-style.css";
 import EditButton from "./EditButton";
 
@@ -19,7 +19,7 @@ export default function ClassesTaken({ list }) {
       {list ? (
         <div>
           {list.map((course) => (
-            <CourseDescPreview
+            <CondensedCourseDescPreview
               ident={course.ident}
               name={course.name}
               desc={course.desc}

@@ -13,7 +13,6 @@ export default function ProfilePage() {
       <div id="profile" className="page-content">
         <h1>my profile</h1>
         <div className="user-profile">
-          <h2>hi, {props.currentUser}</h2>
           <div className="user-profile-content">
             <ClassesTaken list={props.classesTaken} />
             <SavedClasses list={props.savedClasses} />

@@ -9,10 +9,12 @@ import ProfilePage from "./pages/user-profile/ProfilePage";
 import EditTakenCoursesPage from "./pages/user-profile/EditTakenCoursesPage";
 import EditSavedCoursesPage from "./pages/user-profile/EditSavedCoursesPage";
 import EditReviewsPage from "./pages/user-profile/EditReviewsPage";
+import ScrollToTop from "./ScrollToTop";
 
 export default function App() {
   return (
     <div style={{ textAlign: "center" }}>
+    <ScrollToTop/>
       <Routes>
         <Route path="/" element={<HomePage />} />
         <Route
