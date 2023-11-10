@@ -10,11 +10,12 @@ import EditTakenCoursesPage from "./pages/user-profile/EditTakenCoursesPage";
 import EditSavedCoursesPage from "./pages/user-profile/EditSavedCoursesPage";
 import EditReviewsPage from "./pages/user-profile/EditReviewsPage";
 import ScrollToTop from "./ScrollToTop";
+import CourseDetailsPage from "./pages/CourseDetailsPage";
 
 export default function App() {
   return (
     <div style={{ textAlign: "center" }}>
-    <ScrollToTop/>
+      <ScrollToTop />
       <Routes>
         <Route path="/" element={<HomePage />} />
         <Route
@@ -33,6 +34,7 @@ export default function App() {
           element={<EditSavedCoursesPage />}
         />
         <Route path="/my-profile/edit-reviews" element={<EditReviewsPage />} />
+        <Route path="/courses/:ident" element={<CourseDetailsPage />} />
       </Routes>
     </div>
   );

@@ -6,9 +6,11 @@
 #header {
   position: sticky;
   top: 0;
+  left: 0;
+  right: 0;
   padding: 30px 75px 20px 75px;
   box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
-  max-height: fit-content;
+  height: 75px;
   z-index: 100;
 }
 
@@ -17,7 +19,7 @@
   justify-content: center;
   align-items: center;
   padding: 10px 200px 10px 200px;
-  max-height: fit-content;
+  height: 50px;
 }
 
 #header-nav-links {

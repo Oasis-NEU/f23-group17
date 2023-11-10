@@ -7,7 +7,7 @@ export default function SavedClasses({ list }) {
     <div className="user-profile-comp">
       <h2>your saved recommendations</h2>
       {list ? (
-        <div>
+        <div style={{ minHeight: "50%" }}>
           {list.map((course) => (
             <CondensedCourseDescPreview
               ident={course.ident}
@@ -20,7 +20,7 @@ export default function SavedClasses({ list }) {
           ))}
         </div>
       ) : (
-        <div>
+        <div style={{ minHeight: "50%" }}>
           <p> you haven't saved any classes {" :( "} </p>
         </div>
       )}

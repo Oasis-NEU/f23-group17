@@ -17,7 +17,7 @@ export default function ClassesTaken({ list }) {
     <div className="user-profile-comp">
       <h2>classes you've taken</h2>
       {list ? (
-        <div>
+        <div style={{ minHeight: "50%" }}>
           {list.map((course) => (
             <CondensedCourseDescPreview
               ident={course.ident}
@@ -30,7 +30,7 @@ export default function ClassesTaken({ list }) {
           ))}
         </div>
       ) : (
-        <div>
+        <div style={{ minHeight: "50%" }}>
           <p> you haven't taken any classes {" :( "} </p>
         </div>
       )}
