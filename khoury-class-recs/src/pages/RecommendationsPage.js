@@ -1,53 +1,33 @@
-import { React } from "react";
+import { React, useEffect, useState } from "react";
 import Layout from "../layout/Layout";
-import "./pages-styles.css";
 import CourseDescPreview from "../components/CourseDescPreview";
 import RecommendationsCourseDescButtons from "../components/RecommendationsCourseDescButtons";
+import "./pages-styles.css";
+import { supabase } from "../supabase";
 
-export default function RecommendationsPage({ list }) {
-  list = [
-    {
-      ident: "CS2500",
-      name: "Fundies",
-      desc: "Introduces the fundamental ideas of computing and the principles of programming. Discusses a systematic approach to word problems, including analytic reading, synthesis, goal setting, planning, plan execution, and testing. Presents several models of computing, starting from nothing more than expression evaluation in the spirit of high school algebra. No prior programming experience is assumed; therefore, suitable for freshman students, majors and nonmajors alike who wish to explore the intellectual ideas in the discipline. ",
-      coReqs: "fundie lab",
-      preReqs: "be alive",
-    },
-    {
-      ident: "CS2500",
-      name: "Fundies",
-      desc: "Introduces the fundamental ideas of computing and the principles of programming. Discusses a systematic approach to word problems, including analytic reading, synthesis, goal setting, planning, plan execution, and testing. Presents several models of computing, starting from nothing more than expression evaluation in the spirit of high school algebra. No prior programming experience is assumed; therefore, suitable for freshman students, majors and nonmajors alike who wish to explore the intellectual ideas in the discipline. ",
-      coReqs: "fundie lab",
-      preReqs: "be alive",
-    },
-    {
-      ident: "CS2500",
-      name: "Fundies",
-      desc: "Introduces the fundamental ideas of computing and the principles of programming. Discusses a systematic approach to word problems, including analytic reading, synthesis, goal setting, planning, plan execution, and testing. Presents several models of computing, starting from nothing more than expression evaluation in the spirit of high school algebra. No prior programming experience is assumed; therefore, suitable for freshman students, majors and nonmajors alike who wish to explore the intellectual ideas in the discipline. ",
-      coReqs: "fundie lab",
-      preReqs: "be alive",
-    },
-    {
-      ident: "CS2500",
-      name: "Fundies",
-      desc: "Introduces the fundamental ideas of computing and the principles of programming. Discusses a systematic approach to word problems, including analytic reading, synthesis, goal setting, planning, plan execution, and testing. Presents several models of computing, starting from nothing more than expression evaluation in the spirit of high school algebra. No prior programming experience is assumed; therefore, suitable for freshman students, majors and nonmajors alike who wish to explore the intellectual ideas in the discipline. ",
-      coReqs: "fundie lab",
-      preReqs: "be alive",
-    },
-    {
-      ident: "CS2500",
-      name: "Fundies",
-      desc: "Introduces the fundamental ideas of computing and the principles of programming. Discusses a systematic approach to word problems, including analytic reading, synthesis, goal setting, planning, plan execution, and testing. Presents several models of computing, starting from nothing more than expression evaluation in the spirit of high school algebra. No prior programming experience is assumed; therefore, suitable for freshman students, majors and nonmajors alike who wish to explore the intellectual ideas in the discipline. ",
-      coReqs: "fundie lab",
-      preReqs: "be alive",
-    },
-  ];
+export default function RecommendationsPage() {
+  const [courses, setCourses] = useState(null);
+
+  useEffect(() => {
+    const fetchCourses = async () => {
+      const { data, error } = await supabase.from("CoursesCS").select();
+      if (error) throw new Error();
+
+      if (data) {
+        setCourses(data);
+      }
+    };
+    fetchCourses();
+
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
   return (
     <Layout>
       <div id="recommendations" className="page-content">
         <h1>my recommendations</h1>
-        {list ? (
-          list.map((course) => (
+        {courses ? (
+          courses.map((course) => (
             <CourseDescPreview
               ident={course.ident}
               name={course.name}
