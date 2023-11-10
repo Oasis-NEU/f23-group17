@@ -1,38 +1,44 @@
 import React from "react";
+import { Rating } from "@mui/material";
+import DetailsButton from "./DetailsButton";
 import "./comp-style.css";
 
 /**
- * props:
- *  name - string: name of the class
- *  desc - string: the class's description
- *  rating - string: current rating out of 5
- *  preReqs - array of strings: the prereqs for this class
- *  coReqs - array of string: the coreqs for this class
+ * Used when the width of the description can span the entire page.
  */
 export default function CourseDescPreview(props) {
   return (
     <div className="course-desc-wrapper">
-      <h3>{props.name}</h3>
-      <p>{props.desc}</p>
-      <p>
-        <b>rating: </b>
-        {props.rating}
-      </p>
+      <div
+        style={{
+          display: "flex",
+          justifyContent: "space-between",
+          alignItems: "flex-end",
+          width: "100%",
+        }}
+      >
+        <h3 style={{ marginBottom: -10 }}>
+          {props.ident + " - " + props.name}
+        </h3>
+        {props.additionalButtons}
+      </div>
+
+      <p style={{ marginBottom: -5, textAlign: "start" }}>{props.desc}</p>
       {props.preReqs && (
-        <p>
-          <b>prerequisites: </b>
-          {props.preReqs}
+        <p style={{ marginBottom: -5, fontSize: 14 }}>
+          prerequisite(s): {props.preReqs}
         </p>
       )}
       {props.coReqs && (
-        <p>
-          <b>corequisites: </b>
-          {props.coReqs}
-        </p>
+        <p style={{ fontSize: 14 }}>corequisite(s): {props.coReqs}</p>
       )}
-
-      {/** Needs link*/}
-      <button className="course-desc-button">see more details</button>
+      <div className="course-desc-bottom-wrapper">
+        <p style={{ display: "flex", alignItems: "center" }}>
+          <b>overall rating: </b>
+          <Rating precision={0.5} value={props.rating} readOnly size="large" />
+        </p>
+        <DetailsButton courseID={props.ident} />
+      </div>
     </div>
   );
 }

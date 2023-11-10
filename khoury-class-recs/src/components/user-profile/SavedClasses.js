@@ -1,14 +1,16 @@
 import React from "react";
-import CourseDescPreview from "../CourseDescPreview";
+import CondensedCourseDescPreview from "../CondensedCourseDescPreview";
+import EditButton from "./EditButton";
 
 export default function SavedClasses({ list }) {
   return (
     <div className="user-profile-comp">
-      <h3>your saved recommendations</h3>
+      <h2>your saved recommendations</h2>
       {list ? (
-        <div>
+        <div style={{ minHeight: "50%" }}>
           {list.map((course) => (
-            <CourseDescPreview
+            <CondensedCourseDescPreview
+              ident={course.ident}
               name={course.name}
               desc={course.desc}
               rating={course.rating}
@@ -18,13 +20,19 @@ export default function SavedClasses({ list }) {
           ))}
         </div>
       ) : (
-        <div>
+        <div style={{ minHeight: "50%" }}>
           <p> you haven't saved any classes {" :( "} </p>
-          <p> explore your recommendations </p>
         </div>
       )}
 
-      <button>edit</button>
+      {list ? (
+        <EditButton label="edit" path="/my-profile/edit-saved-courses" />
+      ) : (
+        <EditButton
+          label="explore your recommendations"
+          path="/my-recommendations"
+        />
+      )}
     </div>
   );
 }

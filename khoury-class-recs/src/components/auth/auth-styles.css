@@ -2,9 +2,9 @@ input {
   border-radius: 4px;
 }
 .auth-container {
-  border: solid #2b2d42;
+  border: solid #8d99ae;
   border-radius: 10px;
-  box-shadow: 10px 10px #8d99ae;
+  box-shadow: 10px 10px #2b2d42;
   width: 400px;
   height: 400px;
   background-color: #edf2f4;
@@ -18,8 +18,23 @@ input {
 
 .auth-label {
   text-align: left;
+  font-weight: 500;
+}
+
+.auth-label p {
+  margin-bottom: 0px;
 }
 
 .submit-button {
-  
+  margin: 20px 10px 10px 150px;
+  transition: all 0.3s;
+  &:before {
+    background-color: #edf2f4;
+  }
+  &:after {
+    background-color: #8d99ae;
+  }
+  &:hover {
+    background-color: #8d99ae;
+  }
 }
