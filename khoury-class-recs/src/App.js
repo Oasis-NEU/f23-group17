@@ -11,6 +11,7 @@ import EditSavedCoursesPage from "./pages/user-profile/EditSavedCoursesPage";
 import EditReviewsPage from "./pages/user-profile/EditReviewsPage";
 import ScrollToTop from "./ScrollToTop";
 import CourseDetailsPage from "./pages/CourseDetailsPage";
+import CreateReviewPage from "./pages/CreateReviewPage";
 
 export default function App() {
   return (
@@ -34,6 +35,7 @@ export default function App() {
           element={<EditSavedCoursesPage />}
         />
         <Route path="/my-profile/edit-reviews" element={<EditReviewsPage />} />
+        <Route path="/courses/create-review" element={<CreateReviewPage/>}/>
         <Route path="/courses/:ident" element={<CourseDetailsPage />} />
       </Routes>
     </div>
