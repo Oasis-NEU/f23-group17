@@ -17,14 +17,3 @@
   min-width: calc(80vw + 40px + 6px);
   min-height: 40vh;
 }
-
-.user-profile-edit-button {
-  align-self: center;
-  display: flex;
-  color: #ef233c;
-  padding: 10px;
-  text-decoration: none;
-  border: solid #ef233c;
-  border-radius: 5px;
-  margin: 20px;
-}
