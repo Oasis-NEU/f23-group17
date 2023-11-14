@@ -1,8 +1,8 @@
 import { React } from "react";
-import { Link } from "react-router-dom";
 import Layout from "../layout/Layout";
 import EditNoteIcon from "@mui/icons-material/EditNote";
 import EastIcon from "@mui/icons-material/East";
+import { Button } from "@mui/material";
 import "./pages-styles.css";
 
 export default function HomePage() {
@@ -16,22 +16,32 @@ export default function HomePage() {
             looking for your next khoury elective? explore khoury classes
             reviewed by other students!
           </p>
-          <Link to="/my-recommendations" className="home-page-link">
-            <div>see my recommendations</div> <EastIcon sx={{ fontSize: 40 }} />
-          </Link>
+          <Button
+            variant="text"
+            href="/my-recommendations"
+            endIcon={<EastIcon />}
+            sx={{ transform: "scale(1.7)", fontWeight: "bold" }}
+          >
+            see my recommendations
+          </Button>
         </div>
         <div id="get-started">
           <div>
             <h1>get started</h1>
             <p>fill out your profile for better recommendations!</p>
           </div>
-          <Link
-            to="/my-profile"
-            className="home-page-link"
-            style={{ border: "solid", borderRadius: "10px", padding: "10px" }}
+          <Button
+            variant="outlined"
+            href="/my-profile"
+            endIcon={<EditNoteIcon />}
+            sx={{
+              transform: "scale(2)",
+              fontWeight: "bold",
+              border: "solid",
+            }}
           >
-            <div>edit my profile</div> <EditNoteIcon sx={{ fontSize: 40 }} />
-          </Link>
+            edit my profile
+          </Button>
         </div>
       </div>
     </Layout>

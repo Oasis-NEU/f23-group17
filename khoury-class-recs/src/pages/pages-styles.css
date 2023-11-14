@@ -98,13 +98,23 @@ h1 {
 }
 
 #create-review,
+#review-form,
 .edit-page {
   display: flex;
   flex-direction: column;
   align-items: center;
 }
 
-#create-review {
-  padding-top: 100px;
-  padding-bottom: 100px;
+#review-form {
+  border: solid red;
+  border-radius: 10px;
+  width: 60%;
+  margin: 50px;
+  padding-bottom: 20px;
+}
+
+.review-form-label {
+  text-align: left;
+  width: 100%;
+  padding-bottom: 20px;
 }

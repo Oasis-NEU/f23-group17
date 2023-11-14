@@ -3,13 +3,16 @@ import {
   Autocomplete,
   TextField,
   Rating,
-  TextareaAutosize,
+  Typography,
+  Button,
+  Card,
 } from "@mui/material";
 import Layout from "../layout/Layout";
 import "./pages-styles.css";
 
 export default function CreateReviewPage() {
   const list = ["CS 2500", "CS 1000"];
+
   const DEFAULT_VALUES = {
     difficulty: 0,
     workload: 0,
@@ -27,6 +30,11 @@ export default function CreateReviewPage() {
     });
   };
 
+  const handleSelectionChange = (e, value) => {
+    setCourse(value);
+    setForm(DEFAULT_VALUES);
+  };
+
   const handleSubmit = (e) => {
     e.preventDefault();
     setForm(DEFAULT_VALUES);
@@ -39,11 +47,13 @@ export default function CreateReviewPage() {
   return (
     <Layout>
       <div className="page-content" id="create-review">
+        <h1>review a course</h1>
+
         <Autocomplete
           disablePortal
           options={list}
           sx={{ width: "60%" }}
-          onChange={(event, value) => setCourse(value)}
+          onChange={handleSelectionChange}
           renderInput={(params) => (
             <TextField
               {...params}
@@ -54,63 +64,96 @@ export default function CreateReviewPage() {
         />
 
         {selectedCourse && (
-          <div>
+          <Card
+            sx={{
+              display: "flex",
+              flexDirection: "column",
+              alignItems: "center",
+              width: "60%",
+              margin: "50px",
+              paddingBottom: "20px",
+            }}
+          >
             <h2>review {selectedCourse}</h2>
-            <form onSubmit={handleSubmit} className="auth-form">
-              <label>
-                <p>difficulty</p>
-                <TextField
-                  type="number"
-                  name="difficulty"
-                  value={form.difficulty}
-                  onChange={handleChange}
-                  InputProps={{
-                    inputProps: {
-                      max: 10,
-                      min: 0,
-                    },
-                  }}
-                  required
-                />
-              </label>
-              <label>
-                <p>workload</p>
-                <TextField
-                  type="number"
-                  name="workload"
-                  value={form.workload}
-                  onChange={handleChange}
-                  InputProps={{
-                    inputProps: {
-                      max: 10,
-                      min: 0,
-                    },
-                  }}
-                  required
-                />
-              </label>
-              <label>
-                <p>overall rating</p>
+            <form
+              onSubmit={handleSubmit}
+              style={{ width: "75%", display: "flex", flexDirection: "column" }}
+            >
+              <label className="review-form-label">
+                <Typography variant="h5">overall rating</Typography>
+                <p></p>
                 <Rating
                   name="overallRating"
                   value={form.overallRating}
                   precision={0.5}
+                  size="large"
                   onChange={handleChange}
                   required
                 ></Rating>
               </label>
-              <label>
-                <p>additional comments (optional)</p>
-                <TextareaAutosize
+              <div style={{ display: "flex" }}>
+                <label
+                  className="review-form-label"
+                  style={{ marginRight: "10%" }}
+                >
+                  <Typography variant="h6">difficulty</Typography>
+                  <TextField
+                    type="number"
+                    name="difficulty"
+                    value={form.difficulty}
+                    onChange={handleChange}
+                    InputProps={{
+                      inputProps: {
+                        max: 10,
+                        min: 0,
+                      },
+                    }}
+                    required
+                    sx={{ width: "100%" }}
+                  />
+                </label>
+                <label className="review-form-label">
+                  <Typography variant="h6">workload</Typography>
+                  <TextField
+                    type="number"
+                    name="workload"
+                    value={form.workload}
+                    onChange={handleChange}
+                    InputProps={{
+                      inputProps: {
+                        max: 10,
+                        min: 0,
+                      },
+                    }}
+                    sx={{ width: "100%" }}
+                    required
+                  />
+                </label>
+              </div>
+
+              <label className="review-form-label">
+                <Typography variant="h6">
+                  additional comments (optional)
+                </Typography>
+                <TextField
                   name="comments"
                   value={form.comments}
-                  placeholder="This class was my favorite! ..."
+                  placeholder="This class taught me... I took this class with prof... I hated this class because..."
+                  multiline
                   onChange={handleChange}
+                  minRows={5}
+                  sx={{ width: "100%" }}
                 />
               </label>
-              <button type="submit">submit</button>
+              <Button
+                variant="contained"
+                sx={{ width: "fit-content", alignSelf: "flex-end" }}
+                type="submit"
+              >
+                submit
+              </Button>
             </form>
-          </div>
+          </Card>
         )}
       </div>
     </Layout>

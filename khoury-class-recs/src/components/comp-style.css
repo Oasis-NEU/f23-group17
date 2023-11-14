@@ -1,25 +1,13 @@
 .course-desc-wrapper {
   display: flex;
   flex-direction: column;
-  border-top: solid 2px;
   align-items: flex-start;
   padding: 0px 20px 10px 20px;
-}
-
-.course-desc-button {
-  align-self: end;
-  color: #edf2f4;
-  background-color: #d90429;
-  text-decoration: none;
-  display: flex;
-  align-items: center;
-  border: solid #d90429;
-  border-radius: 10px;
-  padding: 5px;
 }
 
 .course-desc-bottom-wrapper {
   display: flex;
   justify-content: space-between;
   width: 100%;
+  align-items: flex-end;
 }

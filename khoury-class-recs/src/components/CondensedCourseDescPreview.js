@@ -1,5 +1,5 @@
 import React from "react";
-import { Rating } from "@mui/material";
+import { Rating, Paper } from "@mui/material";
 import "./comp-style.css";
 import DetailsButton from "./DetailsButton";
 
@@ -8,7 +8,7 @@ import DetailsButton from "./DetailsButton";
  */
 export default function CondensedCourseDescPreview(props) {
   return (
-    <div className="course-desc-wrapper">
+    <Paper className="course-desc-wrapper">
       <h3 style={{ marginBottom: -10 }}>{props.ident + " - " + props.name}</h3>
       <div className="course-desc-bottom-wrapper">
         <p style={{ display: "flex", alignItems: "center", fontSize: 18 }}>
@@ -17,6 +17,6 @@ export default function CondensedCourseDescPreview(props) {
         </p>
         <DetailsButton courseID={props.ident} />
       </div>
-    </div>
+    </Paper>
   );
 }
