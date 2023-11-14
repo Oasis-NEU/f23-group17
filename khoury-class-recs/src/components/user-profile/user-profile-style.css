@@ -15,5 +15,11 @@
 #user-profile-reviews {
   margin: 40px 0px 40px 0px;
   min-width: calc(80vw + 40px + 6px);
+  max-width: calc(80vw + 40px + 6px);
   min-height: 40vh;
+}
+
+.user-profile-comp-bottom-wrapper {
+  margin-top: 10px;
+  margin-bottom: 10px;
 }
