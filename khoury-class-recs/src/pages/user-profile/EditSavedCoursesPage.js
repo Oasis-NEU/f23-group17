@@ -5,6 +5,7 @@ import { supabase } from "../../supabase";
 import CourseDescPreview from "../../components/CourseDescPreview";
 import ProfileCourseDescButtons from "../../components/user-profile/ProfileCourseDescButtons";
 import EditButton from "../../components/user-profile/EditButton";
+import { Stack } from "@mui/material";
 import "../pages-styles.css";
 
 export default function EditSavedCoursesPage() {
@@ -35,19 +36,21 @@ export default function EditSavedCoursesPage() {
         <EditButton label="save more classes" path="/my-recommendations" />
         <h2>saved courses</h2>
         {courses ? (
-          courses.map((course) => (
-            <CourseDescPreview
-              ident={course.ident}
-              name={course.name}
-              desc={course.desc}
-              rating={course.rating}
-              preReqs={course.preReqs}
-              coReqs={course.coReqs}
-              additionalButtons={
-                <ProfileCourseDescButtons toolTipNote="taken" />
-              }
-            />
-          ))
+          <Stack spacing={2} sx={{ width: "80%" }}>
+            {courses.map((course) => (
+              <CourseDescPreview
+                ident={course.ident}
+                name={course.name}
+                desc={course.desc}
+                rating={course.rating}
+                preReqs={course.preReqs}
+                coReqs={course.coReqs}
+                additionalButtons={
+                  <ProfileCourseDescButtons toolTipNote="taken" />
+                }
+              />
+            ))}
+          </Stack>
         ) : (
           <div>no recommendations {":("}</div>
         )}

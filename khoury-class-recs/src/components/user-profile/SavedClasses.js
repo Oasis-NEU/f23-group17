@@ -5,7 +5,7 @@ import EditButton from "./EditButton";
 import "./user-profile-style.css";
 
 export default function SavedClasses() {
-  const list = [
+  let list = [
     {
       ident: "CS2500",
       name: "Fundies",
@@ -28,6 +28,7 @@ export default function SavedClasses() {
       preReqs: "be alive",
     },
   ];
+
   return (
     <div className="user-profile-comp">
       <h2>your saved recommendations</h2>

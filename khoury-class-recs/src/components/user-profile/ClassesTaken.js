@@ -29,8 +29,6 @@ export default function ClassesTaken() {
     },
   ];
 
-  list = list.splice(0, 3);
-
   return (
     <div className="user-profile-comp">
       <h2>classes you've taken</h2>

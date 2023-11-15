@@ -1,6 +1,7 @@
 import { useParams } from "react-router-dom";
 import Layout from "../layout/Layout";
-import { Rating } from "@mui/material";
+import { Rating, Typography, Stack } from "@mui/material";
+import CourseReview from "../components/CourseReview";
 import "./pages-styles.css";
 
 export default function CourseDetailsPage() {
@@ -16,15 +17,37 @@ export default function CourseDetailsPage() {
     difficulty: 8,
     workload: 7,
     overallRating: 3,
-    comments: [{ commenter: "John Doe", comment: "pain" }],
+    reviews: [
+      {
+        ident: "CS 2500",
+        courseName: "Fundamentals of CS 1",
+        overallRating: 1.5,
+        workload: 5,
+        difficulty: 7,
+        comments: "",
+        reviewer: "John Doe",
+      },
+      {
+        ident: "CS 2500",
+        courseName: "Fundamentals of CS 1",
+        overallRating: 1.5,
+        workload: 5,
+        difficulty: 7,
+        comments: "",
+        reviewer: "John Doe",
+      },
+    ],
   };
   return (
     <Layout>
       <div className="page-content">
         <h1>{course.ident + " - " + course.name}</h1>
         <div style={{ paddingLeft: 200, paddingRight: 200 }}>
-          <p>{course.desc}</p>
-          <p style={{ display: "flex", alignItems: "center" }}>
+          <Typography align="left">{course.desc}</Typography>
+          <Typography
+            variant="h5"
+            sx={{ display: "flex", alignItems: "center", paddingTop: "10px" }}
+          >
             <b>overall rating: </b>
             <Rating
               precision={0.5}
@@ -32,19 +55,33 @@ export default function CourseDetailsPage() {
               readOnly
               size="large"
             />
-          </p>
-          <p>difficulty: {course.difficulty} / 10</p>
-          <p>workload: {course.workload} / 10</p>
-          <div>
-            <h2>comments on {course.ident}</h2>
-            {course.comments.length > 0 ? (
-              <div>
-                {course.comments.map((comment) => (
-                  <div>
-                    {comment.commenter} says... "{comment.comment}"
-                  </div>
+          </Typography>
+          <Typography variant="h5" align="left">
+            <b>difficulty: </b> {course.difficulty} / 10
+          </Typography>
+          <Typography variant="h5" align="left">
+            <b>workload: </b>
+            {course.workload} / 10
+          </Typography>
+          <div style={{ paddingTop: "20px" }}>
+            <Typography variant="h4" align="left">
+              comments on {course.ident}
+            </Typography>
+            {course.reviews.length > 0 ? (
+              <Stack spacing={2}>
+                {course.reviews.map((review) => (
+                  <CourseReview
+                    showCourseName={false}
+                    ident={review.ident}
+                    courseName={review.courseName}
+                    reviewer={review.reviewer}
+                    overallRating={review.overallRating}
+                    difficulty={review.difficulty}
+                    workload={review.workload}
+                    comments={review.comments}
+                  />
                 ))}
-              </div>
+              </Stack>
             ) : (
               <div>no comments yet {":("}</div>
             )}

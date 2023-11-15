@@ -1,5 +1,5 @@
 import Layout from "../../layout/Layout";
-import { TextField, Autocomplete } from "@mui/material";
+import { TextField, Autocomplete, Stack } from "@mui/material";
 import ProfileBackButton from "../../components/user-profile/ProfileBackButton";
 import { useState, useEffect } from "react";
 import { supabase } from "../../supabase";
@@ -31,7 +31,7 @@ export default function EditTakenCoursesPage() {
     <Layout>
       <div className="page-content edit-page">
         <ProfileBackButton />
-        <h1>edit my taken courses</h1>
+        <h1>add a course</h1>
         <Autocomplete
           disablePortal
           options={[]}
@@ -47,19 +47,21 @@ export default function EditTakenCoursesPage() {
 
         <h2>courses taken</h2>
         {courses ? (
-          courses.map((course) => (
-            <CourseDescPreview
-              ident={course.ident}
-              name={course.name}
-              desc={course.desc}
-              rating={course.rating}
-              preReqs={course.preReqs}
-              coReqs={course.coReqs}
-              additionalButtons={
-                <ProfileCourseDescButtons toolTipNote="saved" />
-              }
-            />
-          ))
+          <Stack spacing={2} sx={{ width: "80%" }}>
+            {courses.map((course) => (
+              <CourseDescPreview
+                ident={course.ident}
+                name={course.name}
+                desc={course.desc}
+                rating={course.rating}
+                preReqs={course.preReqs}
+                coReqs={course.coReqs}
+                additionalButtons={
+                  <ProfileCourseDescButtons toolTipNote="saved" />
+                }
+              />
+            ))}
+          </Stack>
         ) : (
           <div>no recommendations {":("}</div>
         )}
