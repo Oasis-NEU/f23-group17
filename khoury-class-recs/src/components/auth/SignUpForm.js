@@ -2,6 +2,7 @@ import { React } from "react";
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { CircularProgress, useTheme } from "@mui/material";
+import { supabase } from "../../supabase";
 import "./auth-styles.css";
 
 export default function SignUpForm() {
