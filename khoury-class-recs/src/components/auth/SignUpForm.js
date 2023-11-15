@@ -1,24 +1,22 @@
-// Registration page
+import { React } from "react";
+import { useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
+import { CircularProgress, useTheme } from "@mui/material";
+import "./auth-styles.css";
 
-import { useRef, useState } from "react";
-import { supabase } from "../supabase/supabaseClient";
-
-// Page
 export default function SignUpForm() {
+  const theme = useTheme();
+  const navigate = useNavigate();
 
-  // Holds user input
   const DEFAULT_VALUES = {
     username: "",
     password: "",
     passwordConfirm: "",
   };
 
-  // State handlers
   const [form, setForm] = useState(DEFAULT_VALUES);
-
-  const [msg, setMsg] = useState("")
   const [errorMsg, setErrorMsg] = useState("");
-  const [loading, setLoading] = useState(false)
+  const [isLoading, setLoading] = useState(false);
 
   const handleChange = (e) => {
     setForm({
@@ -27,51 +25,40 @@ export default function SignUpForm() {
     });
   };
 
-  // Registration form functionality
   const register = (email, password) =>
     supabase.auth.signUp({ email, password });
 
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    if (form.password.value != form.password.value) {
-      setErrorMsg("Passwords do not match")
-      return
+    setErrorMsg("");
+    setLoading(true);
+
+    if (form.password !== form.passwordConfirm) {
+      setErrorMsg("passwords do not match!");
+      setLoading(false);
+      return;
     }
 
-    // Registers user
-    try
-    {
-      setErrorMsg("");
-      setMsg("")
-      setLoading(true);
+    const {
+      data: { user, session },
+      error,
+    } = await register(form.username.value, form.password.value);
 
-      const { data, error } = await register(
-        form.username.value, 
-        form.password.value
-      );
-
-      if (data && !error) {
-        setMsg("Registration successful! Check your email to confirm your account")
-      }
-
+    if (error) {
+      setErrorMsg(error.message);
+      setForm(DEFAULT_VALUES);
     }
-    catch (err)
-    {
-      setErrorMsg("ERROR: Unable to register account")
-    }
+    if (user && session) navigate("/");
 
     setLoading(false);
-    setForm(DEFAULT_VALUES);
-
   };
 
   return (
-    <div>
-
-      Sign up
-      <form onSubmit={handleSubmit}>
-        <label>
+    <div className="auth-container">
+      <h2>sign up</h2>
+      <form onSubmit={handleSubmit} className="auth-form">
+        <label className="auth-label">
           <p>username</p>
           <input
             type="text"
@@ -81,7 +68,7 @@ export default function SignUpForm() {
             onChange={handleChange}
           />
         </label>
-        <label>
+        <label className="auth-label">
           <p>password</p>
           <input
             type="password"
@@ -91,7 +78,7 @@ export default function SignUpForm() {
             onChange={handleChange}
           />
         </label>
-        <label>
+        <label className="auth-label">
           <p>confirm password</p>
           <input
             type="password"
@@ -101,12 +88,17 @@ export default function SignUpForm() {
             onChange={handleChange}
           />
         </label>
-        <button type="submit">submit</button>
+        <button type="submit" className="submit-button">
+          submit
+        </button>
       </form>
-
-      {/* Need to add link to Login */}
-      <p>Already have an account? Sign in here!</p>
-
+      <p>
+        already have an account? <Link to="/login">sign in here!</Link>
+      </p>
+      {errorMsg !== "" && (
+        <div style={{ color: theme.palette.primary.main }}>{errorMsg}</div>
+      )}
+      {isLoading && <CircularProgress />}
     </div>
   );
 }

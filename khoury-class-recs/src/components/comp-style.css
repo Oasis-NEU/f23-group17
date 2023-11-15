@@ -1,0 +1,13 @@
+.course-desc-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 0px 20px 10px 20px;
+}
+
+.course-desc-bottom-wrapper {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  align-items: flex-end;
+}
