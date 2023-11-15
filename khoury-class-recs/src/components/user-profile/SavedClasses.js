@@ -2,11 +2,15 @@ import React from "react";
 import CondensedCourseDescPreview from "../CondensedCourseDescPreview";
 import EditButton from "./EditButton";
 
-export default function SavedClasses({ list }) {
+export default function SavedClasses() {
+  let list = [];
+
+  list = list.splice(0, 3);
+
   return (
     <div className="user-profile-comp">
       <h2>your saved recommendations</h2>
-      {list ? (
+      {list.length > 0 ? (
         <div style={{ minHeight: "50%" }}>
           {list.map((course) => (
             <CondensedCourseDescPreview

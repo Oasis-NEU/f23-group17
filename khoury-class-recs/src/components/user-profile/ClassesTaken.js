@@ -3,8 +3,43 @@ import CondensedCourseDescPreview from "../CondensedCourseDescPreview";
 import "./user-profile-style.css";
 import EditButton from "./EditButton";
 
-export default function ClassesTaken({ list }) {
-  list = [
+export default function ClassesTaken() {
+  let list = [
+    {
+      ident: "CS2500",
+      name: "Fundies",
+      desc: "Introduces the fundamental ideas of computing and the principles of programming. Discusses a systematic approach to word problems, including analytic reading, synthesis, goal setting, planning, plan execution, and testing. Presents several models of computing, starting from nothing more than expression evaluation in the spirit of high school algebra. No prior programming experience is assumed; therefore, suitable for freshman students, majors and nonmajors alike who wish to explore the intellectual ideas in the discipline. ",
+      coReqs: "fundie lab",
+      preReqs: "be alive",
+    },
+    {
+      ident: "CS2500",
+      name: "Fundies",
+      desc: "Introduces the fundamental ideas of computing and the principles of programming. Discusses a systematic approach to word problems, including analytic reading, synthesis, goal setting, planning, plan execution, and testing. Presents several models of computing, starting from nothing more than expression evaluation in the spirit of high school algebra. No prior programming experience is assumed; therefore, suitable for freshman students, majors and nonmajors alike who wish to explore the intellectual ideas in the discipline. ",
+      coReqs: "fundie lab",
+      preReqs: "be alive",
+    },
+    {
+      ident: "CS2500",
+      name: "Fundies",
+      desc: "Introduces the fundamental ideas of computing and the principles of programming. Discusses a systematic approach to word problems, including analytic reading, synthesis, goal setting, planning, plan execution, and testing. Presents several models of computing, starting from nothing more than expression evaluation in the spirit of high school algebra. No prior programming experience is assumed; therefore, suitable for freshman students, majors and nonmajors alike who wish to explore the intellectual ideas in the discipline. ",
+      coReqs: "fundie lab",
+      preReqs: "be alive",
+    },
+    {
+      ident: "CS2500",
+      name: "Fundies",
+      desc: "Introduces the fundamental ideas of computing and the principles of programming. Discusses a systematic approach to word problems, including analytic reading, synthesis, goal setting, planning, plan execution, and testing. Presents several models of computing, starting from nothing more than expression evaluation in the spirit of high school algebra. No prior programming experience is assumed; therefore, suitable for freshman students, majors and nonmajors alike who wish to explore the intellectual ideas in the discipline. ",
+      coReqs: "fundie lab",
+      preReqs: "be alive",
+    },
+    {
+      ident: "CS2500",
+      name: "Fundies",
+      desc: "Introduces the fundamental ideas of computing and the principles of programming. Discusses a systematic approach to word problems, including analytic reading, synthesis, goal setting, planning, plan execution, and testing. Presents several models of computing, starting from nothing more than expression evaluation in the spirit of high school algebra. No prior programming experience is assumed; therefore, suitable for freshman students, majors and nonmajors alike who wish to explore the intellectual ideas in the discipline. ",
+      coReqs: "fundie lab",
+      preReqs: "be alive",
+    },
     {
       ident: "CS2500",
       name: "Fundies",
@@ -13,10 +48,13 @@ export default function ClassesTaken({ list }) {
       preReqs: "be alive",
     },
   ];
+
+  list = list.splice(0, 3);
+
   return (
     <div className="user-profile-comp">
       <h2>classes you've taken</h2>
-      {list ? (
+      {list.length > 0 ? (
         <div style={{ minHeight: "50%" }}>
           {list.map((course) => (
             <CondensedCourseDescPreview

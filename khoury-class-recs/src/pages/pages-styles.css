@@ -1,6 +1,7 @@
 html {
   background-color: #ef233c;
 }
+
 .page-content {
   width: 100%;
   min-height: calc(100vh - 125px);

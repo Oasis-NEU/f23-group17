@@ -1,11 +1,15 @@
 import React from "react";
 import EditButton from "./EditButton";
 
-export default function YourReviews({ list }) {
+export default function YourReviews() {
+  let list = [];
+
+  list = list.splice(0, 3);
+
   return (
     <div id="user-profile-reviews">
       <h2>your course reviews</h2>
-      {list ? (
+      {list.length > 0 ? (
         <div style={{ minHeight: "50%" }}> ze reviews</div>
       ) : (
         <div style={{ minHeight: "50%" }}>
