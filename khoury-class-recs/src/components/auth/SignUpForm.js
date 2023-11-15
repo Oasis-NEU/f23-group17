@@ -1,10 +1,14 @@
 import { React } from "react";
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
+import { CircularProgress, useTheme } from "@mui/material";
+import { supabase } from "../../supabase";
 import "./auth-styles.css";
 
 export default function SignUpForm() {
+  const theme = useTheme();
   const navigate = useNavigate();
+
   const DEFAULT_VALUES = {
     username: "",
     password: "",
@@ -12,6 +16,8 @@ export default function SignUpForm() {
   };
 
   const [form, setForm] = useState(DEFAULT_VALUES);
+  const [errorMsg, setErrorMsg] = useState("");
+  const [isLoading, setLoading] = useState(false);
 
   const handleChange = (e) => {
     setForm({
@@ -20,16 +26,33 @@ export default function SignUpForm() {
     });
   };
 
-  const handleSubmit = (e) => {
+  const register = (email, password) =>
+    supabase.auth.signUp({ email, password });
+
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    setForm(DEFAULT_VALUES);
 
-    // should ask backend to verify username/email doesn't already exist
-    // then create the user account in the database
-    // and sign user in
+    setErrorMsg("");
+    setLoading(true);
 
-    // on submit success, nagivate to home
-    navigate("/");
+    if (form.password !== form.passwordConfirm) {
+      setErrorMsg("passwords do not match!");
+      setLoading(false);
+      return;
+    }
+
+    const {
+      data: { user, session },
+      error,
+    } = await register(form.username, form.password);
+
+    if (error) {
+      setErrorMsg(error.message.toLowerCase());
+      setForm(DEFAULT_VALUES);
+    }
+    if (user && session) navigate("/");
+
+    setLoading(false);
   };
 
   return (
@@ -73,6 +96,10 @@ export default function SignUpForm() {
       <p>
         already have an account? <Link to="/login">sign in here!</Link>
       </p>
+      {errorMsg !== "" && (
+        <div style={{ color: theme.palette.primary.main }}>{errorMsg}</div>
+      )}
+      {isLoading && <CircularProgress />}
     </div>
   );
 }

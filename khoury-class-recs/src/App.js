@@ -12,6 +12,7 @@ import EditReviewsPage from "./pages/user-profile/EditReviewsPage";
 import ScrollToTop from "./ScrollToTop";
 import CourseDetailsPage from "./pages/CourseDetailsPage";
 import CreateReviewPage from "./pages/CreateReviewPage";
+import AuthRoute from "./components/auth/AuthRoute";
 
 export default function App() {
   return (
@@ -19,24 +20,30 @@ export default function App() {
       <ScrollToTop />
       <Routes>
         <Route path="/" element={<HomePage />} />
+
+        <Route element={<AuthRoute />}>
+          <Route path="/my-recommendations" element={<RecommendationsPage />} />
+          <Route path="/my-profile" element={<ProfilePage />} />
+          <Route
+            path="/my-profile/edit-taken-courses"
+            element={<EditTakenCoursesPage />}
+          />
+          <Route
+            path="/my-profile/edit-saved-courses"
+            element={<EditSavedCoursesPage />}
+          />
+          <Route
+            path="/my-profile/edit-reviews"
+            element={<EditReviewsPage />}
+          />
+          <Route path="/courses/create-review" element={<CreateReviewPage />} />
+          <Route path="/courses/:ident" element={<CourseDetailsPage />} />
+        </Route>
         <Route
           path="/sign-up"
           element={<AuthPage component={<SignUpForm />} />}
         />
         <Route path="/login" element={<AuthPage component={<LoginForm />} />} />
-        <Route path="/my-recommendations" element={<RecommendationsPage />} />
-        <Route path="/my-profile" element={<ProfilePage />} />
-        <Route
-          path="/my-profile/edit-taken-courses"
-          element={<EditTakenCoursesPage />}
-        />
-        <Route
-          path="/my-profile/edit-saved-courses"
-          element={<EditSavedCoursesPage />}
-        />
-        <Route path="/my-profile/edit-reviews" element={<EditReviewsPage />} />
-        <Route path="/courses/create-review" element={<CreateReviewPage/>}/>
-        <Route path="/courses/:ident" element={<CourseDetailsPage />} />
       </Routes>
     </div>
   );

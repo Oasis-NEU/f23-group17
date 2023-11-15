@@ -4,19 +4,22 @@ import CourseDescPreview from "../components/CourseDescPreview";
 import RecommendationsCourseDescButtons from "../components/RecommendationsCourseDescButtons";
 import "./pages-styles.css";
 import { supabase } from "../supabase";
-import { Stack } from "@mui/material";
+import { CircularProgress, Stack } from "@mui/material";
 
 export default function RecommendationsPage() {
   const [courses, setCourses] = useState(null);
+  const [isLoading, setLoading] = useState(false);
 
   useEffect(() => {
     const fetchCourses = async () => {
-      const { data, error } = await supabase.from("CoursesCS").select();
-      if (error) throw new Error();
+      setLoading(true);
 
-      if (data) {
-        setCourses(data);
-      }
+      const { data, error } = await supabase.from("CoursesCS").select();
+
+      if (error) throw new Error();
+      if (data) setCourses(data);
+
+      setLoading(false);
     };
     fetchCourses();
 
@@ -27,7 +30,9 @@ export default function RecommendationsPage() {
     <Layout>
       <div id="recommendations" className="page-content">
         <h1>my recommendations</h1>
-        {courses ? (
+        {isLoading ? (
+          <CircularProgress />
+        ) : courses ? (
           <Stack spacing={2} sx={{ marginRight: "10%", marginLeft: "10%" }}>
             {courses.map((course) => (
               <CourseDescPreview
