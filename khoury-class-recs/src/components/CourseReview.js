@@ -51,12 +51,3 @@ export default function CourseReview(props) {
     </Paper>
   );
 }
-
-/**
- * ident={review.ident}
-              courseName={review.courseName}
-              overallRating={review.rating}
-              workload={review.workload}
-              difficulty={review.difficulty}
-              comments={review.comments}
- */

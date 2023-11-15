@@ -33,6 +33,7 @@ export default function YourReviews() {
       reviewer: "John Doe",
     },
   ];
+
   return (
     <div id="user-profile-reviews">
       <h2>your course reviews</h2>

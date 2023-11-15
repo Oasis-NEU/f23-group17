@@ -28,6 +28,7 @@ export default function ClassesTaken() {
       preReqs: "be alive",
     },
   ];
+
   return (
     <div className="user-profile-comp">
       <h2>classes you've taken</h2>
