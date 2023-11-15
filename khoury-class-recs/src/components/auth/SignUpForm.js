@@ -47,7 +47,7 @@ export default function SignUpForm() {
     } = await register(form.username, form.password);
 
     if (error) {
-      setErrorMsg(error.message);
+      setErrorMsg(error.message.toLowerCase());
       setForm(DEFAULT_VALUES);
     }
     if (user && session) navigate("/");

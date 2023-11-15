@@ -39,7 +39,7 @@ export default function LoginForm() {
     } = await login(form.username, form.password);
 
     if (error) {
-      setErrorMsg(error.message);
+      setErrorMsg(error.message.toLowerCase());
       setForm(DEFAULT_VALUES);
     }
     if (user && session) navigate("/");
