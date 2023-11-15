@@ -31,7 +31,7 @@ export default function CourseReview(props) {
           </Typography>
         </div>
 
-        <div style={{ display: "flex", alignItems: "center", width: "20%" }}>
+        <div style={{ display: "flex", alignItems: "center", width: "30%" }}>
           <b>ratings: </b>
           <List>
             <ListItem>

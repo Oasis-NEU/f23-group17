@@ -1,34 +1,38 @@
 // Handles app context for controlling user authentication and state
 
-import { createContext, useEffect, useContext, useState } from 'react'
-import { supabase } from '../supabase/supabaseClient'
+import { createContext, useEffect, useContext, useState } from "react";
+import { supabase } from "../supabase";
 
-const AuthContext = createContext({})
+const AuthContext = createContext({});
 
-export const useAuth = () => useContext(AuthContext)
-
-const login = (email, password) => supabase.auth.signInWithPassword({ email, password })
+export const useAuth = () => useContext(AuthContext);
 
 const AuthProvider = ({ children }) => {
-    const [user, setUser] = useState(null)
-    const [auth, setAuth] = useState(false)
+  const [session, setSession] = useState(
+    JSON.parse(sessionStorage.getItem("session"))
+  );
 
-    useEffect(() => {
-        const { data } = supabase.auth.onAuthStateChange((event, session) => {
-          if (event === "SIGNED_IN") {
-            setUser(session.user);
-            setAuth(true);
-          }
-        });
-        return () => {
-          data.subscription.unsubscribe();
-        };
-      }, []);
+  useEffect(() => {
+    sessionStorage.setItem("session", JSON.stringify(session));
+  }, [session]);
 
-    return (
-        <AuthContext.Provider value={{ user, login }}>{children}</AuthContext.Provider>
-    )
+  useEffect(() => {
+    const { data: authListener } = supabase.auth.onAuthStateChange(
+      (event, _session) => {
+        if (event === "SIGNED_IN") {
+          console.log(`Supbase auth event: ${event}`);
+          setSession(_session);
+        }
+      }
+    );
+    return () => {
+      authListener.subscription.unsubscribe();
+    };
+  }, [session]);
 
-}
+  return (
+    <AuthContext.Provider value={{ session }}>{children}</AuthContext.Provider>
+  );
+};
 
-export default AuthProvider
+export default AuthProvider;

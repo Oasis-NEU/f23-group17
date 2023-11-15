@@ -44,7 +44,7 @@ export default function SignUpForm() {
     const {
       data: { user, session },
       error,
-    } = await register(form.username.value, form.password.value);
+    } = await register(form.username, form.password);
 
     if (error) {
       setErrorMsg(error.message);

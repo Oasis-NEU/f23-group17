@@ -10,12 +10,12 @@ import { ThemeProvider } from "@emotion/react";
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <React.StrictMode>
-    <AuthProvider>
-      <BrowserRouter>
-        <ThemeProvider theme={theme}>
+    <BrowserRouter>
+      <ThemeProvider theme={theme}>
+        <AuthProvider>
           <App />
-        </ThemeProvider>
-      </BrowserRouter>
-    </AuthProvider>
+        </AuthProvider>
+      </ThemeProvider>
+    </BrowserRouter>
   </React.StrictMode>
 );
