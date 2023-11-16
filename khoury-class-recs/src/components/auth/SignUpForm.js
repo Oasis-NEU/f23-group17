@@ -1,7 +1,13 @@
 import { React } from "react";
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { CircularProgress, useTheme } from "@mui/material";
+import {
+  CircularProgress,
+  TextField,
+  Typography,
+  useTheme,
+  Button,
+} from "@mui/material";
 import { supabase } from "../../supabase";
 import "./auth-styles.css";
 
@@ -60,46 +66,56 @@ export default function SignUpForm() {
       <h2>sign up</h2>
       <form onSubmit={handleSubmit} className="auth-form">
         <label className="auth-label">
-          <p>username</p>
-          <input
-            type="text"
+          <Typography>username</Typography>
+          <TextField
             placeholder="your email"
             value={form.username || ""}
             name="username"
+            size="small"
             onChange={handleChange}
           />
         </label>
         <label className="auth-label">
-          <p>password</p>
-          <input
+          <Typography>password</Typography>
+          <TextField
             type="password"
             placeholder="your password"
             value={form.password || ""}
             name="password"
+            size="small"
             onChange={handleChange}
           />
         </label>
-        <label className="auth-label">
-          <p>confirm password</p>
-          <input
+        <label className="auth-label last-label">
+          <Typography>confirm password</Typography>
+          <TextField
             type="password"
             placeholder="your password again"
             value={form.passwordConfirm || ""}
             name="passwordConfirm"
+            size="small"
             onChange={handleChange}
           />
         </label>
-        <button type="submit" className="submit-button">
-          submit
-        </button>
+        {isLoading ? (
+          <CircularProgress />
+        ) : (
+          <Button
+            variant="contained"
+            className="submit-button"
+            type="submit"
+            size="small"
+          >
+            submit
+          </Button>
+        )}
       </form>
-      <p>
-        already have an account? <Link to="/login">sign in here!</Link>
-      </p>
       {errorMsg !== "" && (
         <div style={{ color: theme.palette.primary.main }}>{errorMsg}</div>
       )}
-      {isLoading && <CircularProgress />}
+      <Typography>
+        already have an account? <Link to="/login">sign in here!</Link>
+      </Typography>
     </div>
   );
 }

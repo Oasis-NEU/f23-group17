@@ -8,12 +8,17 @@ input {
   width: 400px;
   height: 400px;
   background-color: #edf2f4;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
 }
 
 .auth-form {
   display: flex;
   flex-direction: column;
   align-items: center;
+  width: fit-content;
 }
 
 .auth-label {
@@ -25,16 +30,11 @@ input {
   margin-bottom: 0px;
 }
 
+.last-label {
+  margin-bottom: 10px;
+}
+
 .submit-button {
-  margin: 20px 10px 10px 150px;
-  transition: all 0.3s;
-  &:before {
-    background-color: #edf2f4;
-  }
-  &:after {
-    background-color: #8d99ae;
-  }
-  &:hover {
-    background-color: #8d99ae;
-  }
+  width: fit-content;
+  align-self: flex-end;
 }

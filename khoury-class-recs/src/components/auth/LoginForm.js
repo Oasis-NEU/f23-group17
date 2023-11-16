@@ -2,7 +2,13 @@ import { React, useState } from "react";
 import { supabase } from "../../supabase";
 import { Link, useNavigate } from "react-router-dom";
 import "./auth-styles.css";
-import { CircularProgress, useTheme } from "@mui/material";
+import {
+  CircularProgress,
+  TextField,
+  Typography,
+  useTheme,
+  Button,
+} from "@mui/material";
 
 export default function LoginForm() {
   const theme = useTheme();
@@ -52,36 +58,45 @@ export default function LoginForm() {
       <h2>log in</h2>
       <form onSubmit={handleSubmit} className="auth-form">
         <label className="auth-label">
-          <p>username</p>
-          <input
-            type="text"
+          <Typography>username</Typography>
+          <TextField
             placeholder="your email"
             value={form.username || ""}
             name="username"
             onChange={handleChange}
+            size="small"
           />
         </label>
-        <label className="auth-label">
-          <p>password</p>
-          <input
+        <label className="auth-label last-label">
+          <Typography>password</Typography>
+          <TextField
             type="password"
             placeholder="your password"
             value={form.password || ""}
             name="password"
             onChange={handleChange}
+            size="small"
           />
         </label>
-        <button type="submit" className="submit-button">
-          submit
-        </button>
+        {isLoading ? (
+          <CircularProgress />
+        ) : (
+          <Button
+            variant="contained"
+            className="submit-button"
+            type="submit"
+            size="small"
+          >
+            submit
+          </Button>
+        )}
       </form>
-      <p>
-        don't have an account? <Link to="/sign-up">sign up here!</Link>
-      </p>
       {errorMsg !== "" && (
         <div style={{ color: theme.palette.primary.main }}>{errorMsg}</div>
       )}
-      {isLoading && <CircularProgress />}
+      <Typography>
+        don't have an account? <Link to="/sign-up">sign up here!</Link>
+      </Typography>
     </div>
   );
 }

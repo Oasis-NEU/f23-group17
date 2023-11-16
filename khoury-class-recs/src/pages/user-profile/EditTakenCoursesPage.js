@@ -31,7 +31,7 @@ export default function EditTakenCoursesPage() {
     <Layout>
       <div className="page-content edit-page">
         <ProfileBackButton />
-        <h1>add a course</h1>
+        <h1>edit my taken courses</h1>
         <Autocomplete
           disablePortal
           options={[]}
