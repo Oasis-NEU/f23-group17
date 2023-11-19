@@ -17,7 +17,7 @@ export default function ProfilePage() {
       <div id="profile" className="page-content">
         <h1>my profile</h1>
         <Typography variant="h4" sx={{ paddingBottom: 10 }}>
-          Hi, {session.user.email}!
+          hi, {session.user.email}!
         </Typography>
         <div className="user-profile">
           <div className="user-profile-content">

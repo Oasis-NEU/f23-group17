@@ -33,7 +33,7 @@ export default function EditSavedCoursesPage() {
       <div className="page-content edit-page">
         <ProfileBackButton />
         <h1>edit my saved courses</h1>
-        <EditButton label="save more classes" path="/my-recommendations" />
+        <EditButton label="explore more classes" path="/my-recommendations" />
         <h2>saved courses</h2>
         {courses ? (
           <Stack spacing={2} sx={{ width: "80%" }}>
